@@ -6,6 +6,9 @@ const fs = require("fs");
 
 const NotesModel = require("./notesModel");
 const NotesView = require("./notesView");
+const NotesClient = require("./notesClient");
+
+jest.mock("./notesClient");
 
 describe("Notes view", () => {
   if (
@@ -78,5 +81,21 @@ describe("Notes view", () => {
     expect(document.querySelectorAll("div.note")[1].textContent).toEqual(
       "My new amazing test note2"
     );
+  });
+
+  ///#displayNotesFromApi????????????????????????????????
+  it("displays the notes from API", () => {
+    const model = new NotesModel();
+ 
+    const client = new ClientRequest();
+
+    client.loadNotes.mockImplementation((callback) => callback(['Hello World']));
+      const view = new NotesView(model, client);
+      
+      view.displayNotesFromApi();
+      expect().toEqual('Hello World');
+
+    }
+    )
   });
 });

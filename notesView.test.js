@@ -73,7 +73,7 @@ describe("Notes view", () => {
     //3.note should be on the page
     expect(document.querySelectorAll("div.note").length).toEqual(2);
     expect(document.querySelectorAll("div.note")[0].textContent).toEqual(
-      "My new amazing test note2"
+      "My new amazing test note1"
     );
     expect(document.querySelectorAll("div.note")[1].textContent).toEqual(
       "My new amazing test note2"

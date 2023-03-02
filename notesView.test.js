@@ -7,10 +7,11 @@ const fs = require("fs");
 const NotesModel = require("./notesModel");
 const NotesView = require("./notesView");
 const NotesClient = require("./notesClient");
+const exp = require("constants"); ////check useage
 
 jest.mock("./notesClient");
 
-describe("Notes view", () => {
+describe("NotesView class", () => {
   if (
     ("displays two notes",
     () => {
@@ -86,16 +87,14 @@ describe("Notes view", () => {
   ///#displayNotesFromApi????????????????????????????????
   it("displays the notes from API", () => {
     const model = new NotesModel();
- 
     const client = new ClientRequest();
 
-    client.loadNotes.mockImplementation((callback) => callback(['Hello World']));
-      const view = new NotesView(model, client);
-      
-      view.displayNotesFromApi();
-      expect().toEqual('Hello World');
+    client.loadNotes.mockImplementation((callback) =>
+      callback(["Added a note"])
+    );
+    const view = new NotesView(model, client);
 
-    }
-    )
+    view.displayNotesFromApi();
+    expect(document.querySelector(".note").textContent).toEqual("Added a note");
   });
 });
